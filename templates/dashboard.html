@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Welcome, {{ user }}</h1>
+
+        <!-- Current Focus -->
+        <div class="card">
+            <h2>Current Focus</h2>
+            <p>Backend Development + AWS</p>
+        </div>
+
+        <!-- Skills -->
+        <div class="card">
+            <h2>Skills</h2>
+
+            <ul>
+                <li>Python</li>
+                <li>Flask</li>
+                <li>API Integration</li>
+                <li>Git & GitHub</li>
+            </ul>
+        </div>
+
+        <!-- Goals -->
+        <div class="card">
+            <h2>Goals</h2>
+
+            <ul>
+                <li>Build real-world projects</li>
+                <li>Learn AWS</li>
+                <li>Master backend development</li>
+            </ul>
+        </div>
+
+        <!-- Add Task -->
+        <div class="card">
+
+            <h2> Add Task</h2>
+
+            <form action="/add-task" method="POST">
+
+                <input type="text" name="task" placeholder="Enter task">
+
+                <button type="submit">Add</button>
+
+            </form>
+
+        </div>
+
+        <!-- Task List -->
+        <div class="card">
+
+            <h2> Task List</h2>
+
+            <ul>
+
+                {% for task in tasks %}
+
+                <li>
+
+                    {% if task.completed %}
+                        
+                    {% else %}
+                        
+                    {% endif %}
+
+                    {{ task.title }}
+
+                    <a href="/complete-task/{{ task.id }}">
+                        Toggle
+                    </a>
+
+                    <a href="/delete-task/{{ task.id }}">
+                        Delete
+                    </a>
+
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        <!-- GitHub Stats -->
+        <div class="card">
+
+            <h2> GitHub Stats</h2>
+
+            <p>Name: {{ github.name }}</p>
+
+            <p>Followers: {{ github.followers }}</p>
+
+            <p>Repositories: {{ github.public_repos }}</p>
+
+            <p>Bio: {{ github.bio }}</p>
+
+        </div>
+
+        <!-- Logout -->
+        <div class="card">
+
+            <a href="/logout">
+                <button>Logout</button>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
