@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Developer Dashboard</h1>
+
+        <div class="card">
+            <h2>GitHub Profile</h2>
+
+            <img src="{{ github.avatar_url }}" width="120">
+
+            <p><strong>Name:</strong> {{ github.name }}</p>
+            <p><strong>Followers:</strong> {{ github.followers }}</p>
+            <p><strong>Repositories:</strong> {{ github.public_repos }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Today's Quote</h2>
+            <p>{{ quote }}</p>
+        </div>
+        <div class="card">
+            <h2>Today's Goals</h2>
+
+            <ul>
+                <li>Learn Flask</li>
+                <li>Build Dashboard</li>
+                <li>Push Project to GitHub</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
