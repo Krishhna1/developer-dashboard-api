@@ -185,13 +185,17 @@ Planned upgrades:
 
 ## Screenshots
 
-```md
-<img width="1832" height="835" alt="register" src="https://github.com/user-attachments/assets/f0a2cd2e-64e3-41c0-bad2-03c22aabf506" />
-<img width="1806" height="993" alt="1" src="https://github.com/user-attachments/assets/a8148564-7b10-4d66-9f7b-9079c490f561" />
-<img width="1637" height="1000" alt="2" src="https://github.com/user-attachments/assets/f7b501bf-05fc-4a1b-bd1b-0412a0e2747b" />
+### Register Page
 
+![Register Page](screenshots/register.png)
 
-```
+---
+
+### Dashboard
+
+![Dashboard](screenshots/1.png)
+
+![Dashboard](screenshots/2.png)
 
 ---
 
@@ -200,4 +204,3 @@ Planned upgrades:
 Krishna Sharma
 
 BTech CSE student exploring backend development, cloud technologies, and real-world software projects.
-![Uploading register.png…]()
