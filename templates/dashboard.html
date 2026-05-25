@@ -14,6 +14,29 @@
 
         <h1>Welcome, {{ user }}</h1>
 
+
+        <div class="card">
+
+            <h2>👤 Profile Image</h2>
+
+                {% if profile_image %}
+
+            <img src="{{ profile_image }}" width="150">
+
+            {% endif %}
+
+            <form action="/upload-profile-image" method="POST" enctype="multipart/form-data">
+
+                <input type="file" name="profile_image">
+
+                <button type="submit">
+                    Upload
+                </button>
+
+            </form>
+
+        </div>
+
         <!-- Current Focus -->
         <div class="card">
             <h2>Current Focus</h2>

@@ -1,5 +1,6 @@
-from flask import Flask, render_template , request, redirect , session
+from flask import Flask, render_template, request, redirect, session
 import requests
+from s3_utils import upload_file_to_s3
 
 from models import db, User , Task
 
@@ -95,16 +96,50 @@ def dashboard():
     current_user = User.query.filter_by(
         username=session["user"]
     ).first()
+    if not current_user:
+        session.pop("user", None)
+        return redirect("/login")
+    
     github_url = f"https://api.github.com/users/{current_user.github_username}"
     response = requests.get(github_url)
     github_data = response.json()
+    profile_image = current_user.profile_image
 
     return render_template(
         "dashboard.html",
         user=session["user"],
         tasks=user_tasks,
-        github=github_data
+        github=github_data,
+        profile_image=profile_image
     )
+
+@app.route("/upload-profile-image", methods=["POST"])
+def upload_profile_image():
+
+    if "user" not in session:
+        return redirect("/login")
+
+    image = request.files.get("profile_image")
+
+    if image:
+
+        filename = image.filename
+
+        image_url = upload_file_to_s3(
+            image,
+            filename
+        )
+
+        current_user = User.query.filter_by(
+            username=session["user"]
+        ).first()
+
+        current_user.profile_image = image_url
+
+        db.session.commit()
+
+    return redirect("/dashboard")
+
 @app.route("/logout")
 def logout():
 

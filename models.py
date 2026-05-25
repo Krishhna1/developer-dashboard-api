@@ -11,6 +11,8 @@ class User(UserMixin, db.Model):
 
     password = db.Column(db.String(200), nullable=False)
 
+    profile_image = db.Column(db.String(500))
+
     github_username = db.Column(db.String(100))
 
 class Task(db.Model):
